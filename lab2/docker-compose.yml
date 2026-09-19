@@ -1,0 +1,30 @@
+services:
+
+  service:
+    build:
+      context: ./service
+
+    ports:
+      - "8000:8000"
+
+
+  prometheus:
+    image: prom/prometheus:latest
+
+    ports:
+      - "9090:9090"
+
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+    depends_on:
+      - service
+
+  grafana:
+    image: grafana/grafana:latest
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - prometheus
