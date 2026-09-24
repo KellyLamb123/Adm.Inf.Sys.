@@ -1,0 +1,2 @@
+include:
+  - local: /lab6/.gitlab-ci.yml
