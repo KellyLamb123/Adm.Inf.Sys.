@@ -10,7 +10,6 @@ rbac:
 
 hostAliases:
   - ip: "172.30.6.10"
-
     hostnames:
       - gitlab.lab.test
 
@@ -30,6 +29,10 @@ runners:
         cpu_request = "100m"
         memory_request = "128Mi"
         memory_limit = "512Mi"
+
+        [runners.kubernetes.node_selector]
+          "kubernetes.io/arch" = "arm64"
+          "kubernetes.io/os" = "linux"
 
         [[runners.kubernetes.host_aliases]]
           ip = "172.30.6.10"
